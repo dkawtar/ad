@@ -30,6 +30,8 @@
 /web/css/
 /web/js/
 
+/web/assets/vendor/
+
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml

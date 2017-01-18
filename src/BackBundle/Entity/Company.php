@@ -2,7 +2,11 @@
 
 namespace BackBundle\Entity;
 
+use BackBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation As Gedmo;
+
 
 /**
  * Company
@@ -32,14 +36,14 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="lastNameRepresentative", type="string", length=255)
+     * @ORM\Column(name="lastNameRepresentative", type="string", length=255, nullable=true)
      */
     private $lastNameRepresentative;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstNameRepresentative", type="string", length=255)
+     * @ORM\Column(name="firstNameRepresentative", type="string", length=255, nullable=true)
      */
     private $firstNameRepresentative;
 
@@ -47,35 +51,29 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
-     */
-    private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="SIRET", type="string", length=255)
+     * @ORM\Column(name="siret", type="string", length=255, nullable=true)
      */
-    private $sIRET;
+    private $siret;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="numeroTVA", type="string", length=255)
+     * @ORM\Column(name="tva", type="string", length=255, nullable=true)
      */
-    private $numeroTVA;
+    private $tva;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
@@ -89,23 +87,30 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="postalCode", type="string", length=255)
+     * @ORM\Column(name="postalCode", type="string", length=255, nullable=true)
      */
     private $postalCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
 
     /**
      * @var string
@@ -114,18 +119,50 @@ class Company
      */
     private $mobile;
 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="fix", type="string", length=255,nullable=true)
+     * @ORM\Column(name="image", type="string", length=255,nullable=true)
      */
-    private $fix;
+    private $image;
 
+    /**
+     * @var User
+     *
+     * @ORM\OneToMany(targetEntity="BackBundle\Entity\User",  mappedBy="company",
+     *      cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column( type="datetime", nullable=true)
+     */
+    private $updated;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -157,30 +194,6 @@ class Company
     }
 
     /**
-     * Set firstNameRepresentative
-     *
-     * @param string $firstNameRepresentative
-     *
-     * @return Company
-     */
-    public function setFirstNameRepresentative($firstNameRepresentative)
-    {
-        $this->firstNameRepresentative = $firstNameRepresentative;
-
-        return $this;
-    }
-
-    /**
-     * Get firstNameRepresentative
-     *
-     * @return string
-     */
-    public function getFirstNameRepresentative()
-    {
-        return $this->firstNameRepresentative;
-    }
-
-    /**
      * Set lastNameRepresentative
      *
      * @param string $lastNameRepresentative
@@ -202,6 +215,30 @@ class Company
     public function getLastNameRepresentative()
     {
         return $this->lastNameRepresentative;
+    }
+
+    /**
+     * Set firstNameRepresentative
+     *
+     * @param string $firstNameRepresentative
+     *
+     * @return Company
+     */
+    public function setFirstNameRepresentative($firstNameRepresentative)
+    {
+        $this->firstNameRepresentative = $firstNameRepresentative;
+
+        return $this;
+    }
+
+    /**
+     * Get firstNameRepresentative
+     *
+     * @return string
+     */
+    public function getFirstNameRepresentative()
+    {
+        return $this->firstNameRepresentative;
     }
 
     /**
@@ -229,75 +266,51 @@ class Company
     }
 
     /**
-     * Set phone
+     * Set siret
      *
-     * @param string $phone
+     * @param string $siret
      *
      * @return Company
      */
-    public function setPhone($phone)
+    public function setSiret($siret)
     {
-        $this->phone = $phone;
+        $this->siret = $siret;
 
         return $this;
     }
 
     /**
-     * Get phone
+     * Get siret
      *
      * @return string
      */
-    public function getPhone()
+    public function getSiret()
     {
-        return $this->phone;
+        return $this->siret;
     }
 
     /**
-     * Set sIRET
+     * Set tva
      *
-     * @param string $sIRET
+     * @param string $tva
      *
      * @return Company
      */
-    public function setSIRET($sIRET)
+    public function setTva($tva)
     {
-        $this->sIRET = $sIRET;
+        $this->tva = $tva;
 
         return $this;
     }
 
     /**
-     * Get sIRET
+     * Get tva
      *
      * @return string
      */
-    public function getSIRET()
+    public function getTva()
     {
-        return $this->sIRET;
-    }
-
-    /**
-     * Set numeroTVA
-     *
-     * @param string $numeroTVA
-     *
-     * @return Company
-     */
-    public function setNumeroTVA($numeroTVA)
-    {
-        $this->numeroTVA = $numeroTVA;
-
-        return $this;
-    }
-
-    /**
-     * Get numeroTVA
-     *
-     * @return string
-     */
-    public function getNumeroTVA()
-    {
-        return $this->numeroTVA;
+        return $this->tva;
     }
 
     /**
@@ -421,6 +434,30 @@ class Company
     }
 
     /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Company
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
      * Set mobile
      *
      * @param string $mobile
@@ -445,27 +482,108 @@ class Company
     }
 
     /**
-     * Set fix
+     * Set image
      *
-     * @param string $fix
+     * @param string $image
      *
      * @return Company
      */
-    public function setFix($fix)
+    public function setImage($image)
     {
-        $this->fix = $fix;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get fix
+     * Get image
      *
      * @return string
      */
-    public function getFix()
+    public function getImage()
     {
-        return $this->fix;
+        return $this->image;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Company
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Company
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \BackBundle\Entity\User $user
+     *
+     * @return Company
+     */
+    public function addUser(\BackBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \BackBundle\Entity\User $user
+     */
+    public function removeUser(\BackBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
-

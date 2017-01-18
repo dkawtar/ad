@@ -11,15 +11,16 @@
     {% block stylesheets %}
         {#<!-- BEGIN GLOBAL MANDATORY STYLES -->#}
         {% stylesheets
-        "bundles/back/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css"
-        "bundles/back/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
-        "bundles/back/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css"
-        "bundles/back/theme/assets/global/plugins/jquery-ui/jquery-ui.min.css"
+        "assets/vendor/components-font-awesome/css/font-awesome.css"
+        "assets/vendor/simple-line-icons/css/simple-line-icons.css"
+        "assets/vendor/bootstrap/dist/css/bootstrap.min.css"
+        "assets/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"
         filter='cssrewrite' %}
         {#<!-- END GLOBAL MANDATORY STYLES -->#}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
+
 
     {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>#}
 </head>
@@ -28,16 +29,15 @@
 {% block javascripts %}
     {#<!-- BEGIN CORE PLUGINS -->#}
     {% javascripts
-    "bundles/back/theme/assets/global/plugins/jquery.min.js"
-    "bundles/back/theme/assets/global/plugins/jquery-ui/jquery-ui.min.js"
-    "bundles/back/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js"
+    'bundles/back/theme/assets/global/plugins/jquery.min.js'
+    "assets/vendor/jquery-ui/jquery-ui.min.js"
+    "assets/vendor/bootstrap/dist/js/bootstrap.min.js"
     "bundles/back/theme/assets/global/plugins/js.cookie.min.js"
     "bundles/fosjsrouting/js/router.js" %}
     {#<!-- END CORE PLUGINS -->#}
     <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-
-
+    {#"assets/vendor/jquery/dist/jquery.min.js"#}
 {% endblock %}</body>
 </html>

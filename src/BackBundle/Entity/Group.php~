@@ -1,0 +1,41 @@
+<?php
+
+namespace BackBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Group
+ *
+ * @ORM\Table(name="group")
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\GroupRepository")
+ */
+class Group
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="percentage", type="integer", nullable=true)
+     */
+    private $percentage;
+
+
+    
+}
+

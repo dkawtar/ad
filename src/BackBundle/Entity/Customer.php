@@ -29,14 +29,14 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $firstName;
 
@@ -45,7 +45,14 @@ class Customer
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
-    private $email;
+    private $email; 
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
 
     /**
      * @var Company
@@ -352,4 +359,29 @@ class Customer
     {
         return $this->group;
     }
+    
+     /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Commercial
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
 }

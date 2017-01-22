@@ -36,14 +36,14 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="lastNameRepresentative", type="string", length=255, nullable=true)
+     * @ORM\Column(name="last_name_representative", type="string", length=255, nullable=true)
      */
     private $lastNameRepresentative;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstNameRepresentative", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name_representative", type="string", length=255, nullable=true)
      */
     private $firstNameRepresentative;
 
@@ -80,7 +80,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="additionalAddress", type="string", length=255, nullable=true)
+     * @ORM\Column(name="additional_address", type="string", length=255, nullable=true)
      */
     private $additionalAddress;
 
@@ -94,7 +94,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="postalCode", type="string", length=255, nullable=true)
+     * @ORM\Column(name="postal_code", type="string", length=255, nullable=true)
      */
     private $postalCode;
 

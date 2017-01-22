@@ -11,10 +11,10 @@
     {% block stylesheets %}
         {#<!-- BEGIN GLOBAL MANDATORY STYLES -->#}
         {% stylesheets
-        "assets/vendor/components-font-awesome/css/font-awesome.css"
+        'bundles/back/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css'
         'bundles/back/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css'
-        "assets/vendor/bootstrap/dist/css/bootstrap.min.css"
-        "assets/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"
+        'bundles/back/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css'
+        'bundles/back/theme/assets/global/plugins/jquery-ui/jquery-ui.min.css'
         filter='cssrewrite' %}
         {#<!-- END GLOBAL MANDATORY STYLES -->#}
         <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -30,8 +30,8 @@
     {#<!-- BEGIN CORE PLUGINS -->#}
     {% javascripts
     'bundles/back/theme/assets/global/plugins/jquery.min.js'
-    "assets/vendor/jquery-ui/jquery-ui.min.js"
-    "assets/vendor/bootstrap/dist/js/bootstrap.min.js"
+    'bundles/back/theme/assets/global/plugins/jquery-ui/jquery-ui.min.js'
+    'bundles/back/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js'
     "bundles/back/theme/assets/global/plugins/js.cookie.min.js"
     "bundles/fosjsrouting/js/router.js" %}
     {#<!-- END CORE PLUGINS -->#}

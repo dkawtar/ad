@@ -45,7 +45,7 @@ twig:
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'
-    bundles:        [ 'BackBundle','FOSUserBundle','RestApiBundle','TwigBundle'] #,'NelmioApiDocBundle'
+    bundles:        [ 'BackBundle','FOSUserBundle','RestApiBundle','TwigBundle','NelmioApiDocBundle'] #,'NelmioApiDocBundle'
     filters:
         cssrewrite: ~
         
@@ -107,7 +107,9 @@ stof_doctrine_extensions:
         default:
             sluggable: true  
             timestampable: true
-
+            
+            
+#Pagination
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -118,3 +120,43 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+
+#API 
+sensio_framework_extra:
+    router:      { annotations: true }
+    request:     { converters: true, auto_convert: true }
+    view:        { annotations: true }
+    cache:       { annotations: true }
+    security:    { annotations: true }
+    psr_message: { enabled: false }
+
+#NELMIO API DOC
+nelmio_api_doc: ~
+
+#RESBundle
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: false
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+        include_format: false
+
+jms_serializer:
+    metadata:
+        directories:
+            FOSUserBundle:
+                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
+                namespace_prefix: "FOS\\UserBundle"

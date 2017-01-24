@@ -1,6 +1,6 @@
 rest_api:
     resource: "@RestApiBundle/Controller/"
-    type:     annotation
+    type:     rest
     prefix:   /api
 
 back:
@@ -14,3 +14,7 @@ fos_user:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+ #api   
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api-documentation.html

@@ -8,7 +8,7 @@ security:
     role_hierarchy:
         ROLE_CUSTOMER:       ROLE_USER
         ROLE_COMMERCIAL:       ROLE_USER
-        ROLE_COMPAGNY:       ROLE_USER
+        ROLE_COMPANY:       ROLE_USER
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
     providers:
@@ -49,8 +49,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user-action/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: ROLE_ADMIN }
-#        - { path: ^/api-doc.html, role: ROLE_ADMIN }
+        - { path: ^/api-documentation.html, role: ROLE_ADMIN }
         - { path: ^/, role:  IS_AUTHENTICATED_REMEMBERED }
 #        - { path: ^/account/, role: ROLE_ADMIN, requires_channel: https }

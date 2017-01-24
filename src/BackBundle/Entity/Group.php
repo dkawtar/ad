@@ -21,6 +21,7 @@ class Group
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+  
 
     /**
      * @var string
@@ -28,6 +29,13 @@ class Group
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+    
+      /**
+     * @var string
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
     
     /**
      * @var int
@@ -95,5 +103,29 @@ class Group
     public function getPercentage()
     {
         return $this->percentage;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Group
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

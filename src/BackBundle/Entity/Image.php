@@ -29,6 +29,13 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
      */
     private $alt;
+    
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"alt"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -189,5 +196,29 @@ class Image
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Image
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

@@ -24,6 +24,13 @@ class Command
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+//    /**
+//     * @var string
+//     * @Gedmo\Slug(fields={"company"}, updatable=false)
+//     * @ORM\Column(length=128, unique=true)
+//     */
+//    private $slug;
 
     /**
      * @var Customer
@@ -194,4 +201,6 @@ class Command
     {
         return $this->commercial;
     }
+
+
 }

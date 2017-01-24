@@ -29,6 +29,13 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
      */
     private $alt;
+    
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"alt"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string

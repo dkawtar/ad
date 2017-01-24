@@ -21,6 +21,8 @@ class Commercial
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+ 
 
     /**
      * @var string
@@ -35,6 +37,13 @@ class Commercial
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
     private $firstName;
+    
+       /**
+     * @var string
+     * @Gedmo\Slug(fields={"lastName","firstName"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -249,5 +258,29 @@ class Commercial
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Commercial
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

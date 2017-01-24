@@ -25,6 +25,8 @@ class Customer
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    
 
     /**
      * @var string
@@ -39,6 +41,13 @@ class Customer
      * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $firstName;
+    
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"lastName","firstName"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -384,4 +393,28 @@ class Customer
         return $this->phone;
     }
 
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Customer
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }

@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-
 use FOS\RestBundle\View\View as FOSView;
 
 /**
@@ -39,7 +38,7 @@ class UserApiController extends Controller
      * @param $password
      * @return View
      */
-    public function checkSessionAction($username, $password)
+    public function checkLoginAction($username, $password)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('BackBundle:User')->findOneByUsernameCanonical();

@@ -75,7 +75,7 @@ class UserApiController extends Controller
      *     404 = "Returned when the user is not found"
      *   }
      * )
-     * @Post("/users/connexion")
+     * @Post("/users/login")
      *
      * @param ParamFetcher $paramFetcher Paramfetcher
      *

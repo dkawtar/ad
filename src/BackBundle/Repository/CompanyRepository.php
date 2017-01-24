@@ -10,12 +10,16 @@ namespace BackBundle\Repository;
  */
 class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function companyPaginationAPI($start = 0, $max = null)
+    public function companyPaginationAPI($search=null, $start = 0, $max = null)
     {
         $qb = $this->createQueryBuilder('c')
             ->select('c')
             ->distinct('c.id')
             ->orderBy('c.id ', 'ASC');
+        if ($search) {
+            $qb->where('c.name like :search')
+                ->setParameter('search', "%" . $search . "%");
+        }
         if ($max) {
             $preparedQuery = $qb->getQuery()
                 ->setMaxResults($max)

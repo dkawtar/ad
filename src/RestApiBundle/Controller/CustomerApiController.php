@@ -40,11 +40,12 @@ class CustomerApiController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $limit = ($request->get('limit') !== null && intval($request->get('limit')) > 0) ? intval($request->get('limit')) : null;
+        $search = ($request->get('search') !== null) ? $request->get('search') : null;
 
         $start = $request->get('page');
         $start = $start && ($start != -1 || $start > -1) ? $start : 0;
 
-        $entity = $em->getRepository('BackBundle:Customer')->customerPaginationAPI($start, $limit);
+        $entity = $em->getRepository('BackBundle:Customer')->customerPaginationAPI($search,$start, $limit);
 
 
         $view = FOSView::create();

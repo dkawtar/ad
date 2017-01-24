@@ -25,6 +25,9 @@ class CommercialApiController extends Controller
 
     /**
      * * Returne la liste des commerciaux.  <a href="../api/commercials" target="_blank">Voir</a>
+     * * <a href="../api/commercials?limit=10&page=0">/api/commercials?limit=10&page=0 </a> ==> Récupérer les 10 premiers.
+     * * <a href="../api/commercials?limit=10&page=1">/api/commercials?limit=10&page=1</a> ==> Récupérer les 10 autres  ainsi de suite
+     * * (PS: Il faut incrémenter la variable page pour les autres pages jusque ca retourne un tableau vide).
      * @ApiDoc(
      *   resource = true,
      *   description = "Returne la liste des commerciaux.",
@@ -40,12 +43,12 @@ class CommercialApiController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $limit = ($request->get('limit') !== null && intval($request->get('limit')) > 0) ? intval($request->get('limit')) : null;
-
+        $search = ($request->get('search') !== null) ? $request->get('search') : null;
         $start = $request->get('page');
         $start = $start && ($start != -1 || $start > -1) ? $start : 0;
 
-        $entity = $em->getRepository('BackBundle:Commercial')->commercialPaginationAPI($start, $limit);
-        
+        $entity = $em->getRepository('BackBundle:Commercial')->commercialPaginationAPI($search,$start, $limit);
+
         $view = FOSView::create();
         if (!$entity) {
             $view->setData($entity)->setStatusCode(404);

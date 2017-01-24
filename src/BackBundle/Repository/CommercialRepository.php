@@ -10,4 +10,19 @@ namespace BackBundle\Repository;
  */
 class CommercialRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function commercialPaginationAPI($start = 0, $max = null)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c')
+            ->distinct('c.id')
+            ->orderBy('c.id ', 'ASC');
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($start);
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+        return $preparedQuery->getResult();
+    }
 }

@@ -10,4 +10,19 @@ namespace BackBundle\Repository;
  */
 class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function customerPaginationAPI($start = 0, $max = null)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c')
+            ->distinct('c.id')
+            ->orderBy('c.id ', 'ASC');
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($start);
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+        return $preparedQuery->getResult();
+    }
 }

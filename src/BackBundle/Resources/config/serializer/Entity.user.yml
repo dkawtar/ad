@@ -1,0 +1,1 @@
+BackBundle\Entity\User:    exclusion_policy: ALL    properties:        id:            expose: true        changePassword:            expose: true         customer:            expose: true        commercial:            expose: true        company:            expose: true        created:            expose: true        updated:            expose: false            

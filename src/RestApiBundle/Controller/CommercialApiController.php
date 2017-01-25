@@ -24,10 +24,13 @@ class CommercialApiController extends Controller
 {
 
     /**
-     * * Returne la liste des commerciaux.  <a href="../api/commercials" target="_blank">Voir</a>
-     * * <a href="../api/commercials?limit=10&page=0">/api/commercials?limit=10&page=0 </a> ==> Récupérer les 10 premiers.
-     * * <a href="../api/commercials?limit=10&page=1">/api/commercials?limit=10&page=1</a> ==> Récupérer les 10 autres  ainsi de suite
-     * * (PS: Il faut incrémenter la variable page pour les autres pages jusque ca retourne un tableau vide).
+     * * Returne la liste des commerciaux.  ===> <a href="../api/commercials" target="_blank">Voir</a>
+     * * <a href="../api/commercials?limit=10&page=0">/api/commercials?limit=10&page=0 </a> => Récupérer les 10 premiers.
+     * * <a href="../api/commercials?search=michel&limit=10&page=1">/api/commercials?search=michel&limit=10&page=1</a> => Pagination avec une recherche
+     * * Paramètres (Optionnels): 
+     * *  - search : pour la recherche d'un mot clé.
+     * *  - limit : nombre d'élément à retourner.
+     * *  - page (par défault 0) => Pour la pagination.
      * @ApiDoc(
      *   resource = true,
      *   description = "Returne la liste des commerciaux.",
@@ -59,10 +62,13 @@ class CommercialApiController extends Controller
     }
 
     /**
-     * * Retourne une société par son ID. <br>
+     * * Retourne un objet Commerciale . <br>
+     * * Paramètre obligatoire :
+     * * - ID: ID Commerciale 
+     * * - <a href="../api/commercials/1">/api/commercials/1 </a> .
      * @ApiDoc(
      *   resource = true,
-     *   description = "Retourne un société par son ID.",
+     *   description = "Retourne un Commerciale.",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when the Commercial is not found"

@@ -25,6 +25,12 @@ class CompanyApiController extends Controller
 
     /**
      * * Returne la liste des sociétés.  <a href="../api/companies" target="_blank">Voir</a>
+     * * <a href="../api/companies?limit=10&page=0">/api/companies?limit=10&page=0 </a> => Récupérer les 10 premiers.
+     * * <a href="../api/companies?limit=10&page=1&search=ron">/api/companies?limit=10&page=1&search=ron</a> => Pagination avec une recherche
+     * * Paramètres (Optionnels): 
+     * *  - search : pour la recherche d'un mot clé.
+     * *  - limit : nombre d'élément à retourner.
+     * *  - page (par défault 0) => Pour la pagination.
      * @ApiDoc(
      *   resource = true,
      *   description = "Returne la liste des société.",
@@ -58,6 +64,9 @@ class CompanyApiController extends Controller
 
     /**
      * * Retourne une société par son ID. <br>
+     * * Paramètre obligatoire :
+     * * - ID: ID Commerciale 
+     * * - <a href="../api/companies/1">/api/companies/1 </a> .
      * @ApiDoc(
      *   resource = true,
      *   description = "Retourne un société par son ID.",

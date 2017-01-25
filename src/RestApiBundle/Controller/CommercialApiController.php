@@ -25,8 +25,8 @@ class CommercialApiController extends Controller
 
     /**
      * * Returne la liste des commerciaux.  ===> <a href="../api/commercials" target="_blank">Voir</a>
-     * * <a href="../api/commercials?limit=10&page=0">/api/commercials?limit=10&page=0 </a> => Récupérer les 10 premiers.
-     * * <a href="../api/commercials?search=michel&limit=10&page=1">/api/commercials?search=michel&limit=10&page=1</a> => Pagination avec une recherche
+     * * <a href="../api/commercials?limit=10&page=0" target="_blank">/api/commercials?limit=10&page=0 </a> => Récupérer les 10 premiers.
+     * * <a href="../api/commercials?search=cha&limit=10&page=1" target="_blank">/api/commercials?search=michel&limit=10&page=1</a> => Pagination avec une recherche
      * * Paramètres (Optionnels): 
      * *  - search : pour la recherche d'un mot clé.
      * *  - limit : nombre d'élément à retourner.
@@ -65,7 +65,7 @@ class CommercialApiController extends Controller
      * * Retourne un objet Commerciale . <br>
      * * Paramètre obligatoire :
      * * - ID: ID Commerciale 
-     * * - <a href="../api/commercials/1">/api/commercials/1 </a> .
+     * * - <a href="../api/commercials/1" target="_blank">/api/commercials/1 </a> .
      * @ApiDoc(
      *   resource = true,
      *   description = "Retourne un Commerciale.",

@@ -25,8 +25,8 @@ class CustomerApiController extends Controller
 
     /**
      * * Returne la liste des clients.  <a href="../api/customers" target="_blank">Voir</a>
-     * * <a href="../api/customers?limit=10&page=0">/api/customers?limit=10&page=0 </a> => Récupérer les 10 premiers.
-     * * <a href="../api/customers?search=jo">/api/customers?search=jo</a> => Pagination avec une recherche
+     * * <a href="../api/customers?limit=10&page=0" target="_blank">/api/customers?limit=10&page=0 </a> => Récupérer les 10 premiers.
+     * * <a href="../api/customers?search=jo" target="_blank">/api/customers?search=jo</a> => Pagination avec une recherche
      * * Paramètres (Optionnels): 
      * *  - search : pour la recherche d'un mot clé.
      * *  - limit : nombre d'élément à retourner.
@@ -67,7 +67,7 @@ class CustomerApiController extends Controller
      * * Retourne un objet client. <br>
      * * Paramètre obligatoire :
      * * - ID: ID du  Client 
-     * * <a href="../api/customers/1">/api/customers/1 </a> .
+     * * <a href="../api/customers/1" target="_blank">/api/customers/1 </a> .
 
      * @ApiDoc(
      *   resource = true,

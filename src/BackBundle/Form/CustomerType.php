@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,6 +21,26 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+             ->add('login', TextType::class, array(
+                    'label' => 'Pseudo',
+                    'required' => true,
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => 'Pseudo',
+                    ),
+                )
+            )
+            ->add('password', PasswordType::class, array(
+                    'label' => 'Mot de passe',
+                    'required' => true,
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => '********',
+//                        'autocomplete' => 'off'
+                    ),
+                )
+            )
+            
             ->add('lastName', TextType::class, array(
                     'label' => 'Nom',
                     'required' => true,
@@ -53,7 +74,7 @@ class CustomerType extends AbstractType
                     'required' => false,
                     'attr' => array(
                         'class' => 'form-control',
-                        'placeholder' => '(01-02-03-04-05',
+                        'placeholder' => '01 02 03 04 05',
                     ),
                 )
             )

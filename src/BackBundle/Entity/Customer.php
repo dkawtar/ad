@@ -25,8 +25,7 @@ class Customer
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-    
+
 
     /**
      * @var string
@@ -41,7 +40,7 @@ class Customer
      * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $firstName;
-    
+
     /**
      * @var string
      * @Gedmo\Slug(fields={"lastName","firstName"}, updatable=false)
@@ -54,8 +53,8 @@ class Customer
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
-    private $email; 
-    
+    private $email;
+
     /**
      * @var string
      *
@@ -73,7 +72,7 @@ class Customer
 
     /**
      * @var Commercial
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="BackBundle\Entity\Commercial")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -117,7 +116,10 @@ class Customer
     private $updated;
 
 
-   
+    private $login;
+
+    private $password;
+
 
     /**
      * Get id
@@ -368,8 +370,8 @@ class Customer
     {
         return $this->group;
     }
-    
-     /**
+
+    /**
      * Set phone
      *
      * @param string $phone
@@ -417,6 +419,55 @@ class Customer
     {
         return $this->slug;
     }
+
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Customer
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
     
-    
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Customer
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+
 }

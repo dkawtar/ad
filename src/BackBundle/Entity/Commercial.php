@@ -81,6 +81,11 @@ class Commercial
      * @ORM\Column( type="datetime", nullable=true)
      */
     private $updated;
+    
+    private $login;
+
+    private $password;
+
 
     /**
      * Get id
@@ -284,6 +289,57 @@ class Commercial
         return $this->slug;
     }
     
+     /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Customer
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+    
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Customer
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->lastName. " ".$this->firstName;

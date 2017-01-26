@@ -160,6 +160,11 @@ class Company
      */
     private $updated;
     
+    private $login;
+
+    private $password;
+
+    
     /**
      * Constructor
      */
@@ -619,4 +624,53 @@ class Company
     {
         return $this->slug;
     }
+    
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Customer
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+    
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Customer
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
 }

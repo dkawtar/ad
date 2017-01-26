@@ -17,6 +17,11 @@ use Gedmo\Mapping\Annotation As Gedmo;
  */
 class User extends BaseUser
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_CUSTOMER = 'ROLE_CUSTOMER';
+    const ROLE_COMPANY = 'ROLE_COMPANY';
+    const ROLE_COMMERCIAL = 'ROLE_COMMERCIAL';
+
     /**
      * @var int
      *
@@ -49,7 +54,7 @@ class User extends BaseUser
      * @ORM\JoinColumn(nullable=true)
      */
     protected $commercial;
-    
+
     /**
      * @var Company
      *
@@ -163,7 +168,7 @@ class User extends BaseUser
     {
         return $this->commercial;
     }
-    
+
 
     /**
      * Set created

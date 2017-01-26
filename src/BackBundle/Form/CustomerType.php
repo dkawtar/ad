@@ -88,7 +88,7 @@ class CustomerType extends AbstractType
                     ),
                 )
             )
-            ->add('image', FileType::class, array(
+            ->add('image_upload', FileType::class, array(
                     'mapped' => false,
                     'label' => 'Profile client',
                     'required' => false

@@ -31,7 +31,7 @@ class CategoryType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_category';
+        return 'backbundle_category';
     }
 
 

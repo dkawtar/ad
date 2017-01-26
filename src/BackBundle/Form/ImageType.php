@@ -31,7 +31,7 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_image';
+        return 'backbundle_image';
     }
 
 

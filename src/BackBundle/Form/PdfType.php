@@ -31,7 +31,7 @@ class PdfType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_pdf';
+        return 'backbundle_pdf';
     }
 
 

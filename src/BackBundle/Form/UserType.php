@@ -15,7 +15,8 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('changePassword');
+            ->add('changePassword')
+       ;
     }
     
     /**
@@ -33,12 +34,12 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_user';
+        return 'backbundle_user';
     }
     
      public function getParent()
     {
-        return UsernameFormType::class;
+        return 'fos_user_registration';
     }
 
 

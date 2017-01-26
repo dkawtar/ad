@@ -31,7 +31,7 @@ class CommandType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_command';
+        return 'backbundle_command';
     }
 
 

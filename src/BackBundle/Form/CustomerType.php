@@ -132,7 +132,7 @@ class CustomerType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'back_customer';
+        return 'backbundle_customer';
     }
 
 

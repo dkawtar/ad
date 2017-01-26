@@ -1,0 +1,49 @@
+<?php
+
+namespace BackBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation As Gedmo;
+
+/**
+ * GroupCustomer
+ *
+ * @ORM\Table(name="group_customer")
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\GroupCustomerRepository")
+ */
+class GroupCustomer
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+     /**
+     * @var string
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+    
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="percentage", type="integer", nullable=true)
+     */
+    private $percentage;
+
+
+}
+

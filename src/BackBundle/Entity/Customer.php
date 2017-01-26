@@ -4,7 +4,7 @@ namespace BackBundle\Entity;
 
 use BackBundle\Entity\Commercial;
 use BackBundle\Entity\Company;
-use BackBundle\Entity\Group;
+use BackBundle\Entity\GroupCustomer;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation As Gedmo;
 
@@ -94,8 +94,8 @@ class Customer
     private $image;
 
     /**
-     * @var Group
-     * @ORM\ManyToOne(targetEntity="BackBundle\Entity\Group")
+     * @var GroupCustomer
+     * @ORM\ManyToOne(targetEntity="BackBundle\Entity\GroupCustomer")
      */
     private $group;
 
@@ -348,11 +348,11 @@ class Customer
     /**
      * Set group
      *
-     * @param Group $group
+     * @param GroupCustomer $group
      *
      * @return Customer
      */
-    public function setGroup(Group $group = null)
+    public function setGroup(GroupCustomer $group = null)
     {
         $this->group = $group;
 
@@ -417,4 +417,6 @@ class Customer
     {
         return $this->slug;
     }
+    
+    
 }

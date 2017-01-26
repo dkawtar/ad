@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation As Gedmo;
 
 /**
- * Group
+ * GroupCustomer
  *
- * @ORM\Table(name="group")
- * @ORM\Entity(repositoryClass="BackBundle\Repository\GroupRepository")
+ * @ORM\Table(name="group_customer")
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\GroupCustomerRepository")
  */
-class Group
+class GroupCustomer
 {
     /**
      * @var int
@@ -21,7 +21,6 @@ class Group
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-  
 
     /**
      * @var string
@@ -29,14 +28,15 @@ class Group
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
-    
-      /**
+
+    /**
      * @var string
      * @Gedmo\Slug(fields={"name"}, updatable=false)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
-    
+
+
     /**
      * @var int
      *
@@ -44,8 +44,10 @@ class Group
      */
     private $percentage;
 
-
-    
+    function __construct()
+    {
+        $this->percentage = 0;
+    }
 
     /**
      * Get id
@@ -62,7 +64,7 @@ class Group
      *
      * @param string $name
      *
-     * @return Group
+     * @return GroupCustomer
      */
     public function setName($name)
     {
@@ -82,11 +84,35 @@ class Group
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return GroupCustomer
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set percentage
      *
      * @param integer $percentage
      *
-     * @return Group
+     * @return GroupCustomer
      */
     public function setPercentage($percentage)
     {
@@ -105,27 +131,9 @@ class Group
         return $this->percentage;
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Group
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
 
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
+    public function __toString()
     {
-        return $this->slug;
+        return $this->name . ' (' . $this->percentage . ' %)';
     }
 }

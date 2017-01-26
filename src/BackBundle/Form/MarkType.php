@@ -31,7 +31,7 @@ class MarkType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_mark';
+        return 'back_mark';
     }
 
 

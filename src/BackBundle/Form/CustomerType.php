@@ -2,6 +2,8 @@
 
 namespace BackBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -56,7 +58,7 @@ class CustomerType extends AbstractType
                 )
             )
             ->add('percentage', NumberType::class, array(
-                    'label' => 'Reduction',
+                    'label' => 'Réduction',
                     'data' => 0,
                     'required' => false,
                     'attr' => array(
@@ -71,9 +73,46 @@ class CustomerType extends AbstractType
                     'required' => false
                 )
             )
-
-//            ->add('company')
-//            ->add('commercial')
+            ->add('company', EntityType::class, array(
+                    'class' => 'BackBundle:Company',
+                    'required' => true,
+                    'label' => 'Société',
+                     'attr' => array(
+                        'class' => 'form-control select2' ,
+                    ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                            ->orderBy('c.name', 'ASC');
+                    },
+                    'choice_label' => 'name',
+                )
+            )
+            ->add('commercial', EntityType::class, array(
+                    'class' => 'BackBundle:Commercial',
+                    'required' => true,
+                    'label' => 'Commerçant',
+                    'attr' => array(
+                        'class' => 'form-control select2',
+                    ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                            ->orderBy('c.lastName', 'ASC');
+                    },
+                )
+            )     
+            ->add('group', EntityType::class, array(
+                    'class' => 'BackBundle:GroupCustomer',
+                    'required' => false,
+                    'label' => 'Groupe',
+                    'attr' => array(
+                        'class' => 'form-control',
+                    ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('g')
+                            ->orderBy('g.name', 'ASC');
+                    },
+                )
+            )
 //            ->add('group')        
         ;
     }
@@ -93,7 +132,7 @@ class CustomerType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_customer';
+        return 'back_customer';
     }
 
 

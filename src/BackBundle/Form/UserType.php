@@ -2,6 +2,7 @@
 
 namespace BackBundle\Form;
 
+use FOS\UserBundle\Form\Type\UsernameFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,8 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('changePassword')->add('created')->add('updated')->add('customer')->add('commercial')->add('company')        ;
+        $builder
+            ->add('changePassword');
     }
     
     /**
@@ -31,7 +33,12 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_user';
+        return 'back_user';
+    }
+    
+     public function getParent()
+    {
+        return UsernameFormType::class;
     }
 
 

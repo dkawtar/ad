@@ -31,7 +31,7 @@ class CommercialType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_commercial';
+        return 'back_commercial';
     }
 
 

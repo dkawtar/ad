@@ -31,7 +31,7 @@ class DesignApplicationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_designapplication';
+        return 'back_designapplication';
     }
 
 

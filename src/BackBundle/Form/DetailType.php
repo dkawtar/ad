@@ -31,7 +31,7 @@ class DetailType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_detail';
+        return 'back_detail';
     }
 
 

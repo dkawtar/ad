@@ -31,7 +31,7 @@ class GroupType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backbundle_group';
+        return 'back_group';
     }
 
 

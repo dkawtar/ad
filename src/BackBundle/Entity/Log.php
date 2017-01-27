@@ -33,14 +33,14 @@ class Log
     /**
      * @var string
      *
-     * @ORM\Column(name="user_agent", type="string", length=255, nullable=true))
+     * @ORM\Column(name="user_agent", type="string", length=255, nullable=true)
      */
     private $userAgent;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="host", type="string", length=255)
+     * @ORM\Column(name="host", type="string", length=255,nullable=true)
      */
     private $host;
 

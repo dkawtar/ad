@@ -5,13 +5,14 @@ namespace BackBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation As Gedmo;
 
+
 /**
- * Category
+ * Log
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="BackBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="log")
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\LogRepository")
  */
-class Category
+class Log
 {
     /**
      * @var int
@@ -25,15 +26,10 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="ip", type="string", length=255)
      */
-    private $name;
-    /**
-     * @var string
-     * @Gedmo\Slug(fields={"name"}, updatable=false)
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
+    private $ip;
+
 
     /**
      * @var \DateTime
@@ -50,9 +46,18 @@ class Category
      * @ORM\Column( type="datetime", nullable=true)
      */
     private $updated;
-    
-    
-    
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="count", type="integer",options={"default"= 0})
+     */
+    private $count;
+
+    function __construct()
+    {
+        $this->count = 0;
+    }
 
     /**
      * Get id
@@ -65,27 +70,27 @@ class Category
     }
 
     /**
-     * Set name
+     * Set ip
      *
-     * @param string $name
+     * @param string $ip
      *
-     * @return Category
+     * @return Log
      */
-    public function setName($name)
+    public function setIp($ip)
     {
-        $this->name = $name;
+        $this->ip = $ip;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get ip
      *
      * @return string
      */
-    public function getName()
+    public function getIp()
     {
-        return $this->name;
+        return $this->ip;
     }
 
     /**
@@ -93,7 +98,7 @@ class Category
      *
      * @param \DateTime $created
      *
-     * @return Category
+     * @return Log
      */
     public function setCreated($created)
     {
@@ -117,7 +122,7 @@ class Category
      *
      * @param \DateTime $updated
      *
-     * @return Category
+     * @return Log
      */
     public function setUpdated($updated)
     {
@@ -137,26 +142,27 @@ class Category
     }
 
     /**
-     * Set slug
+     * Set count
      *
-     * @param string $slug
+     * @param integer $count
      *
-     * @return Category
+     * @return Log
      */
-    public function setSlug($slug)
+    public function setCount($count)
     {
-        $this->slug = $slug;
+        $this->count = $count;
 
         return $this;
     }
 
+
     /**
-     * Get slug
+     * Get count
      *
-     * @return string
+     * @return integer
      */
-    public function getSlug()
+    public function getCount()
     {
-        return $this->slug;
+        return $this->count;
     }
 }

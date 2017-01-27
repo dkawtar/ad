@@ -30,6 +30,20 @@ class Log
      */
     private $ip;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_agent", type="string", length=255)
+     */
+    private $userAgent; 
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="host", type="string", length=255)
+     */
+    private $host;
+
 
     /**
      * @var \DateTime
@@ -91,6 +105,30 @@ class Log
     public function getIp()
     {
         return $this->ip;
+    }
+
+    /** 
+     * Set host
+     *
+     * @param $host
+     * @return Log
+     *
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * Get host
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->Host;
     }
 
     /**
@@ -164,5 +202,29 @@ class Log
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * Set userAgent
+     *
+     * @param string $userAgent
+     *
+     * @return Log
+     */
+    public function setUserAgent($userAgent)
+    {
+        $this->userAgent = $userAgent;
+
+        return $this;
+    }
+
+    /**
+     * Get userAgent
+     *
+     * @return string
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
     }
 }

@@ -23,16 +23,15 @@ class BackController extends Controller
         $ip = $request->getClientIp();
         $em = $this->getDoctrine()->getManager();
         $log = $em->getRepository('BackBundle:Log')->findOneByIp($ip);
-        
         if (null === $log) {
             $log = new Log();
             $log->setIp($ip);
-            $log->setCount(1);
             $em->persist($log);
-        } else {
-            $log->setCount($log->getCount() + 1);
+            $em->flush();
+
         }
-        
+        $log->setCount($log->getCount() + 1);
+        $log->setUserAgent($request->headers->get('User-Agent'));
         $em->flush();
         return $this->render('BackBundle:Pages:index.html.twig');
     }

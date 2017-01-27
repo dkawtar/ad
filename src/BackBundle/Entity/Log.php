@@ -26,17 +26,17 @@ class Log
     /**
      * @var string
      *
-     * @ORM\Column(name="ip", type="string", length=255)
+     * @ORM\Column(name="ip", type="string", length=255, nullable=true)
      */
     private $ip;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="user_agent", type="string", length=255)
+     * @ORM\Column(name="user_agent", type="string", length=255, nullable=true))
      */
-    private $userAgent; 
-    
+    private $userAgent;
+
     /**
      * @var string
      *
@@ -107,7 +107,7 @@ class Log
         return $this->ip;
     }
 
-    /** 
+    /**
      * Set host
      *
      * @param $host

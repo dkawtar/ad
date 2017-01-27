@@ -20,7 +20,7 @@ class UploadImage
     private $baseurl = 'http://localhost/';
     private $basefolder = '../web';
     private $folderurl = '/uploads/img/';
-  
+
 
     /**
      * @var int
@@ -34,7 +34,7 @@ class UploadImage
         $this->baseurl = $this->container->getParameter('image_base_url');
         $this->basefolder = $this->container->getParameter('image_base_folder');
         $this->folderurl = $this->container->getParameter('image_folder_url');
-  
+
     }
 
 
@@ -47,10 +47,10 @@ class UploadImage
     public function upload(UploadedFile $file, $slug, $imageType = 'media')
     {
         $targetMove = $this->folderurl . $imageType . '/' . $slug . '/';
-        
+
         @mkdir($this->basefolder . $targetMove, 0700, true);
         $fileName = $slug . '.jpg';
-        
+
         $imageResource = null;
         switch (strtolower($file->guessExtension())) {
             case 'jpeg':
@@ -91,13 +91,13 @@ class UploadImage
     }
 
 
-    public function uploadProfile( UploadedFile $file,$slug,$imageType = 'media')
+    public function uploadProfile(UploadedFile $file, $slug, $imageType = 'media')
     {
         $targetMove = $this->folderurl . $imageType . '/' . $slug . '/';
 
         @mkdir($this->basefolder . $targetMove, 0700, true);
 
-        $fileName =  $slug . '.jpg';
+        $fileName = $slug . '.jpg';
 
         $extension = $file->guessExtension();
 
@@ -135,14 +135,16 @@ class UploadImage
 
         //----------------- CREATION IMAGE THUMBNAIL -----------------
         $imgDimension = getimagesize($file->getRealPath());
- 
+        
         $imgWidth = 200;
         $ratio = $imgWidth / $imgDimension[0];
-        $imgHeight = $imgDimension[1] * $ratio;   
-//        
-//        $imgHeight = 300;
-//        $ratio = $imgHeight / $imgDimension[1];
-//        $imgWidth = $imgDimension[0] * $ratio;
+        $imgHeight = $imgDimension[1] * $ratio;
+
+        if ($imgHeight > $imgWidth) {
+            $imgHeight = 200;
+            $ratio = $imgHeight / $imgDimension[1];
+            $imgWidth = $imgDimension[0] * $ratio;
+        }
 
         $img_thumbnail_destination = imagecreatetruecolor($imgWidth, $imgHeight);
 
@@ -156,24 +158,23 @@ class UploadImage
 
         return $resFileName;
     }
-    
-    
-    
-    public function uploadImage(UploadedFile $file,$slug, $imageType = 'media')
+
+
+    public function uploadImage(UploadedFile $file, $slug, $imageType = 'media')
     {
-        $targetMove =  $this->folderurl.$imageType.'/'.$slug.'/';
+        $targetMove = $this->folderurl . $imageType . '/' . $slug . '/';
 
-        @mkdir($this->basefolder.$targetMove, 0700, true);
+        @mkdir($this->basefolder . $targetMove, 0700, true);
 
-        $fileName = $slug.'.'.$file->guessExtension();
-        $file->move($this->basefolder.$targetMove, $fileName);
-        $resFileName = $this->baseurl.$targetMove.$fileName;
+        $fileName = $slug . '.' . $file->guessExtension();
+        $file->move($this->basefolder . $targetMove, $fileName);
+        $resFileName = $this->baseurl . $targetMove . $fileName;
 
         return $resFileName;
     }
-    
-    
-    
+
+
+
 //    /**
 //     * @param UploadedFile $file
 //     * @return bool

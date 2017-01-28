@@ -21,11 +21,11 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-             ->add('login', TextType::class, array(
+            ->add('login', TextType::class, array(
                     'label' => 'Pseudo',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputLogin',
                         'placeholder' => 'Pseudo',
                     ),
                 )
@@ -34,13 +34,12 @@ class CustomerType extends AbstractType
                     'label' => 'Mot de passe',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPassword',
                         'placeholder' => '********',
 //                        'autocomplete' => 'off'
                     ),
                 )
             )
-            
             ->add('lastName', TextType::class, array(
                     'label' => 'Nom',
                     'required' => true,
@@ -64,7 +63,7 @@ class CustomerType extends AbstractType
                     'label' => 'Mail',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputEmail',
                         'placeholder' => 'jean.dupont@mail.com',
                     ),
                 )
@@ -73,7 +72,7 @@ class CustomerType extends AbstractType
                     'label' => 'Téléphone',
                     'required' => false,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPhone',
                         'placeholder' => '01 02 03 04 05',
                     ),
                 )
@@ -98,8 +97,8 @@ class CustomerType extends AbstractType
                     'class' => 'BackBundle:Company',
                     'required' => true,
                     'label' => 'Société',
-                     'attr' => array(
-                        'class' => 'form-control select2' ,
+                    'attr' => array(
+                        'class' => 'form-control select2',
                     ),
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('c')
@@ -120,7 +119,7 @@ class CustomerType extends AbstractType
                             ->orderBy('c.lastName', 'ASC');
                     },
                 )
-            )     
+            )
             ->add('group', EntityType::class, array(
                     'class' => 'BackBundle:GroupCustomer',
                     'required' => false,
@@ -134,7 +133,6 @@ class CustomerType extends AbstractType
                     },
                 )
             )
-//            ->add('group')        
         ;
     }
 

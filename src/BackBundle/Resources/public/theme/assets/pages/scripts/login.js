@@ -276,8 +276,8 @@ jQuery(document).ready(function () {
         var checkEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         console.log(checkEmail.test(email));
         if (checkEmail.test(email)) {
-            var href = Routing.generate('back_user_check_email');
-            $.getJSON(href, {"email": email}).done(function (data) {
+            var href = Routing.generate('back_user_check_username_or_email');
+            $.getJSON(href, {"user": email}).done(function (data) {
                 // console.log(data);
                 if (data.type == "success" && data.response == true) {
                     $("#heck_email").val(1);

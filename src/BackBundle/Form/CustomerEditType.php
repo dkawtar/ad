@@ -25,7 +25,7 @@ class CustomerEditType extends AbstractType
                     'label' => 'Pseudo',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputLogin',
                         'placeholder' => 'Pseudo',
                     ),
                 )
@@ -34,7 +34,7 @@ class CustomerEditType extends AbstractType
                     'label' => 'Mot de passe',
                     'required' => false,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPassword',
                         'placeholder' => '********',
 //                        'autocomplete' => 'off'
                     ),

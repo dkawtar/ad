@@ -22,16 +22,17 @@ class CommercialEditType extends AbstractType
                     'label' => 'Pseudo',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputLogin',
                         'placeholder' => 'Pseudo',
                     ),
                 )
             )
+          
             ->add('password', PasswordType::class, array(
                     'label' => 'Mot de passe',
                     'required' => false,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPassword',
                         'placeholder' => '********',
 //                        'autocomplete' => 'off'
                     ),

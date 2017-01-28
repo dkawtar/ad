@@ -22,7 +22,7 @@ class CommercialType extends AbstractType
                     'label' => 'Pseudo',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputLogin',
                         'placeholder' => 'Pseudo',
                     ),
                 )
@@ -31,7 +31,7 @@ class CommercialType extends AbstractType
                     'label' => 'Mot de passe',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPassword',
                         'placeholder' => '********',
 //                        'autocomplete' => 'off'
                     ),

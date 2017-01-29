@@ -64,7 +64,7 @@ class CustomerEditType extends AbstractType
                     'label' => 'Mail',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputEmail',
                         'placeholder' => 'jean.dupont@mail.com',
                     ),
                 )
@@ -73,7 +73,7 @@ class CustomerEditType extends AbstractType
                     'label' => 'Téléphone',
                     'required' => false,
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control inputPhone',
                         'placeholder' => '01 02 03 04 05',
                     ),
                 )

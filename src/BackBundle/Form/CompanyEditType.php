@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CompanyType extends AbstractType
+class CompanyEditType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -24,7 +24,6 @@ class CompanyType extends AbstractType
             ->add('login', TextType::class, array(
                     'label' => 'Pseudo',
                     'required' => false,
-                    'disabled' => true,
                     'attr' => array(
                         'class' => 'form-control inputLogin',
                         'placeholder' => 'Pseudo',
@@ -33,7 +32,7 @@ class CompanyType extends AbstractType
             )
             ->add('password', PasswordType::class, array(
                     'label' => 'Mot de passe',
-                    'required' => true,
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-control inputPassword',
                         'placeholder' => '********',

@@ -158,6 +158,76 @@ class UploadImage
 
         return $resFileName;
     }
+    
+    public function uploadAvatar(UploadedFile $file, $slug, $imageType = 'media')
+    {
+        $targetMove = $this->folderurl . $imageType . '/' . $slug . '/';
+
+        @mkdir($this->basefolder . $targetMove, 0700, true);
+
+        $fileName = "avatar-".$slug . '.jpg';
+
+        $extension = $file->guessExtension();
+
+        //--------------------- Background -------------------------
+        $imageResource = null;
+        switch (strtolower($extension)) {
+            case 'jpeg':
+            case 'jpg':
+            case 'jpe':
+            case 'jfif':
+            case 'jif':
+            case 'jp2':
+            case 'j2k':
+            case 'jpf':
+            case 'jpx':
+            case 'jpm':
+            case 'mj2':
+                $imageResource = @imagecreatefromjpeg($file->getRealPath());
+                break;
+            case 'png':
+                $imageResource = @imagecreatefrompng($file->getRealPath());
+                break;
+            case 'gif':
+                $imageResource = @imagecreatefromgif($file->getRealPath());
+                break;
+            default:
+                $img_str = @file_get_contents($file->getRealPath());
+                if ($img_str)
+                    $imageResource = @imagecreatefromstring(@base64_decode($img_str));
+                break;
+        }
+
+        if (!$imageResource)
+            return null;
+
+        //----------------- CREATION IMAGE THUMBNAIL -----------------
+        $imgDimension = getimagesize($file->getRealPath());
+        
+        $imgWidth = 50;
+        $ratio = $imgWidth / $imgDimension[0];
+        $imgHeight = $imgDimension[1] * $ratio;
+
+        if ($imgHeight > $imgWidth) {
+            $imgHeight = 50;
+            $ratio = $imgHeight / $imgDimension[1];
+            $imgWidth = $imgDimension[0] * $ratio;
+        }
+
+        $img_thumbnail_destination = imagecreatetruecolor($imgWidth, $imgHeight);
+
+        imagecopyresampled($img_thumbnail_destination, $imageResource, 0, 0, 0, 0, $imgWidth, $imgHeight, $imgDimension[0], $imgDimension[1]);
+
+        if (!imagejpeg($img_thumbnail_destination, $this->basefolder . $targetMove . $fileName, 100))
+            return null;
+
+        //----------------- FIN CREATION IMAGE THUMBNAIL -------------
+        $resFileName = $this->baseurl . $targetMove . $fileName;
+
+        return $resFileName;
+    }
+    
+    
 
 
     public function uploadImage(UploadedFile $file, $slug, $imageType = 'media')

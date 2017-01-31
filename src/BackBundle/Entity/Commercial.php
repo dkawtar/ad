@@ -65,6 +65,13 @@ class Commercial
      * @ORM\Column(name="image", type="string", length=255,nullable=true)
      */
     private $image;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar", type="string", length=255,nullable=true)
+     */
+    private $avatar;
 
     /**
      * @var \DateTime
@@ -343,5 +350,29 @@ class Commercial
     public function __toString()
     {
         return $this->lastName. " ".$this->firstName;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return Commercial
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }

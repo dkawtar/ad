@@ -45,7 +45,7 @@ twig:
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'
-    bundles:        [ 'BackBundle','FOSUserBundle','TwigBundle','NelmioApiDocBundle'] #,'NelmioApiDocBundle'
+    bundles:        [ 'BackBundle','FOSUserBundle','TwigBundle',] #,'NelmioApiDocBundle'
     filters:
         cssrewrite: ~
         
@@ -132,31 +132,31 @@ sensio_framework_extra:
     psr_message: { enabled: false }
 
 #NELMIO API DOC
-nelmio_api_doc: ~
+#nelmio_api_doc: ~
 
 #RESBundle
-fos_rest:
-    param_fetcher_listener: true
-    body_listener: true
-    format_listener: true
-    view:
-        view_response_listener: 'force'
-        formats:
-            xml: false
-            json : true
-        templating_formats:
-            html: true
-        force_redirects:
-            html: true
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: twig
-    routing_loader:
-        default_format: json
-        include_format: false
+#fos_rest:
+#    param_fetcher_listener: true
+#    body_listener: true
+#    format_listener: true
+#    view:
+#        view_response_listener: 'force'
+#        formats:
+#            xml: false
+#            json : true
+#        templating_formats:
+#            html: true
+#        force_redirects:
+#            html: true
+#        failed_validation: HTTP_BAD_REQUEST
+#        default_engine: twig
+#    routing_loader:
+#        default_format: json
+#        include_format: false
 
-jms_serializer:
-    metadata:
-        directories:
-            FOSUserBundle:
-                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
-                namespace_prefix: "FOS\\UserBundle"
+#jms_serializer:
+#    metadata:
+#        directories:
+#            FOSUserBundle:
+#                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
+#                namespace_prefix: "FOS\\UserBundle"

@@ -3,8 +3,8 @@ back:
     type:     annotation
     prefix:   /
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 #    prefix:   /user-profile/
 
 fos_js_routing:

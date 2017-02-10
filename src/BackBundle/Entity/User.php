@@ -39,7 +39,7 @@ class User extends BaseUser
      * @ORM\Column(name="dn", type="string", length=255, nullable=true)
      */
     protected $dn;
-    
+
     protected $logged;
 
     /**
@@ -57,11 +57,11 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
      */
     protected $sAMAccountName;
     /**
      * @var string
+     * @ORM\Column(name="full_name", type="string", length=255, nullable=true)
      */
     protected $fullName;
 
@@ -169,13 +169,13 @@ class User extends BaseUser
             $this->setUsernameCanonical($this->getData($data, "samaccountname"));
             $this->setEmail($this->getData($data, "userprincipalname"));
             $this->setEmailCanonical($this->getData($data, "userprincipalname"));
-            $this->setSuperAdmin((bool) false);
+            $this->setSuperAdmin((bool)false);
 
             $adminCount = ($this->getData($data, "admincount") === null || $this->getData($data, "admincount") == 0) ? false : true;
             $this->setAdminCount($adminCount);
             if ($adminCount === true) {
                 $this->addRole(static::ROLE_ADMIN);
-                $this->setSuperAdmin((bool) true);
+                $this->setSuperAdmin((bool)true);
             } else {
                 $this->setRoles(static::ROLE_USER);
             }

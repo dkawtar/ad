@@ -23,6 +23,9 @@ services:
           class: BackBundle\Service\LdapService
           arguments: 
             - "%ldap_host%"     # host
+            - "%ldap_base_dn%"     # user
+            - "%ldap_user%"     # user
+            - "%ldap_pass%"     # pass
             - "%ldap_port%"     # port
             - "%ldap_version%"  # version
             - "%ldap_ssl%"      # SSL
@@ -37,8 +40,8 @@ services:
             - "@ldap"
             - "%ldap_base_dn%"
             - "%ldap_search_dn%"
-            - "%ldap_search_password%"
-            - "%ldap_default_roles%"
+            - "%ldap_pass%"
+#            - "%ldap_default_roles%"
             - "%ldap_uid_key%"
             - "%ldap_search_filter%"
 

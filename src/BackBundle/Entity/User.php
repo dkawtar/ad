@@ -39,9 +39,15 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+    
+      /**
+     * @var string
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     */
+    protected $firstName;
 
 
     /**
@@ -53,17 +59,13 @@ class User extends BaseUser
 
     protected $logged;
 
-    /**
-     * @var string
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
-     */
-    protected $firstName;
+  
 
-    /**
-     * @var string
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
-     */
-    protected $lastName;
+//    /**
+//     * @var string
+//     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+//     */
+//    protected $lastName;
 
 
     /**
@@ -181,6 +183,8 @@ class User extends BaseUser
     public function init($data)
     {
         if (!empty($data)) {
+            
+            dump($data);
             $this->setDn($this->getData($data, "distinguishedname"));
             $this->setUsername($this->getData($data, "samaccountname"));
             $this->setLogin($this->getData($data, "samaccountname"));
@@ -216,7 +220,6 @@ class User extends BaseUser
             $this->setName($this->getData($data, "sn")); // a changer
 
             $this->setFullName($this->getData($data, "displayname"));
-            $this->setLastName($this->getData($data, "sn"));
             $this->setFirstName($this->getData($data, "givenname"));
 //            $this->setFirstName($this->getData($data, "displayname"));
             $this->setAddress($this->getData($data, "streetaddress"));
@@ -311,29 +314,29 @@ class User extends BaseUser
         return $this->firstName;
     }
 
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
+//    /**
+//     * Set lastName
+//     *
+//     * @param string $lastName
+//     *
+//     * @return User
+//     */
+//    public function setLastName($lastName)
+//    {
+//        $this->lastName = $lastName;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get lastName
+//     *
+//     * @return string
+//     */
+//    public function getLastName()
+//    {
+//        return $this->lastName;
+//    }
 
     /**
      * Set sAMAccountName

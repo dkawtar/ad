@@ -22,20 +22,11 @@ class UserType extends AbstractType
     {
 
         $builder
-            ->add('title', TextType::class, array(
-                    'label' => 'Fonction',
-                    'required' => false,
-                    'attr' => array(
-                        'class' => 'form-control',
-                        'placeholder' => 'Fonction',
-                        'autocomplete' => 'off'
-                    ),
-                )
-            )->add('name', TextType::class, array(
+            ->add('name', TextType::class, array(
                     'label' => 'Nom',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control name',
+                        'class' => 'form-control name input-required',
                         'placeholder' => 'Nom',
                         'autocomplete' => 'off'
                     ),
@@ -44,7 +35,7 @@ class UserType extends AbstractType
                     'label' => 'Prenom',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control firstName',
+                        'class' => 'form-control firstName input-required',
                         'placeholder' => 'Prenom',
                         'autocomplete' => 'off'
                     ),
@@ -52,20 +43,43 @@ class UserType extends AbstractType
             )
             ->add('login', TextType::class, array(
                     'label' => 'Login',
-                    'disabled' => true,
+//                    'disabled' => true,
+                    'required' => true,
                     'attr' => array(
-                        'class' => 'form-control login',
+                        'class' => 'form-control login input-required',
                         'placeholder' => 'Login',
                         'autocomplete' => 'off'
                     ),
                 )
             )
+//               ->add('email', TextType::class, array(
+//                    'label' => 'Email',
+//                    'required' => true,
+//                    'disabled' => true,
+//                    'attr' => array(
+//                        'class' => 'form-control email',
+//                        'placeholder' => 'nom.prenom',
+//                        'autocomplete' => 'off'
+//                    ),
+//
+//                )
+//            )
             ->add('password', PasswordType::class, array(
                     'label' => 'Mot de passe',
                     'required' => true,
                     'attr' => array(
-                        'class' => 'form-control password',
+                        'class' => 'form-control password input-required',
                         'placeholder' => 'Mot de passe',
+                        'autocomplete' => 'off'
+                    ),
+                )
+            )
+            ->add('title', TextType::class, array(
+                    'label' => 'Fonction',
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => 'Fonction',
                         'autocomplete' => 'off'
                     ),
                 )
@@ -122,13 +136,9 @@ class UserType extends AbstractType
             )->add('service', ChoiceType::class, array(
                     'label' => 'Service',
                     'choices' => array(
-                        "Saint-Mandé" => "42Consulting Paris",
-                        "Luxembourg" => "42Consulting Lux",
-                        "Issy-Les-Moulineaux" => "42MediaTelecom",
-//                        "test1" => "test 1",
-//                        "test2" => "test 2",
-//                        "test3" => "test 3",
-
+                        "42Consulting Paris" => "Saint-Mandé",
+                        "42Consulting Lux" => "Luxembourg",
+                        "42MediaTelecom" => "Issy-Les-Moulineaux",
                     ),
                     'attr' => array(
                         'class' => 'form-control service',
@@ -177,18 +187,6 @@ class UserType extends AbstractType
                     'attr' => array(
                         'class' => 'form-control mobile',
                         'placeholder' => '0601020304',
-                        'autocomplete' => 'off'
-                    ),
-
-                )
-            )
-            ->add('email', TextType::class, array(
-                    'label' => 'Email',
-                    'required' => true,
-                    'disabled' => true,
-                    'attr' => array(
-                        'class' => 'form-control email',
-                        'placeholder' => 'nom.prenom',
                         'autocomplete' => 'off'
                     ),
 

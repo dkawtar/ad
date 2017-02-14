@@ -20,19 +20,38 @@ class BackController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $ip = $request->getClientIp();
-        $em = $this->getDoctrine()->getManager();
-        $log = $em->getRepository('BackBundle:Log')->findOneByIp($ip);
-        if (null === $log) {
-            $log = new Log();
-            $log->setIp($ip);
-            $em->persist($log);
-            $em->flush();
+//        $ip = $request->getClientIp();
+//        $em = $this->getDoctrine()->getManager();
+//        $log = $em->getRepository('BackBundle:Log')->findOneByIp($ip);
+//        if (null === $log) {
+//            $log = new Log();
+//            $log->setIp($ip);
+//            $em->persist($log);
+//            $em->flush();
+//
+//        }
+//        $log->setCount($log->getCount() + 1);
+//        $log->setUserAgent($request->headers->get('User-Agent'));
+//        $em->flush();
+//        return $this->render('BackBundle:Pages:index.html.twig');
+        
+        $ad = $this->get("ldap_service");
+        $users = $ad->getAllUser();
+        $usersLocked = $ad->getUserInfoComputer("locked");
+        $usersDisabled = $ad->getUserInfoComputer("disabled");
+        $neverExpires = $ad->getUserInfoComputer("expires");
+        $computers = $ad->getAllComputer();
 
-        }
-        $log->setCount($log->getCount() + 1);
-        $log->setUserAgent($request->headers->get('User-Agent'));
-        $em->flush();
-        return $this->render('BackBundle:Pages:index.html.twig');
+        $adGroups = $ad->getAllGroup();
+
+        return $this->render('BackBundle:Pages:index.html.twig', array(
+            "users" => $users,
+            "groups" => $adGroups,
+            "usersLocked" => $usersLocked,
+            "usersDisabled" => $usersDisabled,
+            "neverExpires" => $neverExpires,
+            "computers" => $computers,
+        ));
+        
     }
 }

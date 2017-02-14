@@ -32,6 +32,17 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     **/
+    private $title;
+
+    /**
+     * @var string
+     *
+     */
+    private $name;
+
 
     /**
      * @var string
@@ -64,6 +75,12 @@ class User extends BaseUser
      * @ORM\Column(name="full_name", type="string", length=255, nullable=true)
      */
     protected $fullName;
+
+    /**
+     * @var string
+     *
+     */
+    private $login;
 
     /**
      * @var string
@@ -166,10 +183,13 @@ class User extends BaseUser
         if (!empty($data)) {
             $this->setDn($this->getData($data, "distinguishedname"));
             $this->setUsername($this->getData($data, "samaccountname"));
+            $this->setLogin($this->getData($data, "samaccountname"));
+
             $this->setUsernameCanonical($this->getData($data, "samaccountname"));
             $this->setEmail($this->getData($data, "userprincipalname"));
             $this->setEmailCanonical($this->getData($data, "userprincipalname"));
             $this->setSuperAdmin((bool)false);
+            $this->setTitle($this->getData($data, "title"));
 
             $adminCount = ($this->getData($data, "admincount") === null || $this->getData($data, "admincount") == 0) ? false : true;
             $this->setAdminCount($adminCount);
@@ -177,7 +197,7 @@ class User extends BaseUser
                 $this->addRole(static::ROLE_ADMIN);
                 $this->setSuperAdmin((bool)true);
             } else {
-                $this->setRoles(static::ROLE_USER);
+                $this->addRole(static::ROLE_USER);
             }
 
             $this->setPassword(md5(uniqid($this->getData($data, 'cn'))));
@@ -193,6 +213,7 @@ class User extends BaseUser
             }
 
             $this->setSAMAccountName($this->getData($data, "samaccountname"));
+            $this->setName($this->getData($data, "sn")); // a changer
 
             $this->setFullName($this->getData($data, "displayname"));
             $this->setLastName($this->getData($data, "sn"));
@@ -363,6 +384,52 @@ class User extends BaseUser
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return User
+     */
+    public function setTitle($title)
+    {
+        $this->title = ucfirst(strtolower($title));
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = ucfirst(strtolower($name));
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set address
      *
      * @param string $address
@@ -480,6 +547,29 @@ class User extends BaseUser
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     * @return User
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
     }
 
     /**

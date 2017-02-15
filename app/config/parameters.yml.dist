@@ -17,7 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-    dap_host: 10.0.0.100
+    ldap_host: 10.0.0.100
     ldap_port: 389
     ldap_version: 3
     ldap_ssl: false

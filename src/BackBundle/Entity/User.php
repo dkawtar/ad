@@ -184,7 +184,7 @@ class User extends BaseUser
     {
         if (!empty($data)) {
             
-            dump($data);
+//            dump($data);
             $this->setDn($this->getData($data, "distinguishedname"));
             $this->setUsername($this->getData($data, "samaccountname"));
             $this->setLogin($this->getData($data, "samaccountname"));

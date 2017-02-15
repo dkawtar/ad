@@ -42,8 +42,8 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         ldap_service: "@ldap_service"
-#        ad_tree: "%active_directory_tree%"
-        ad_user: "%ldap_user%"
+        ldap_dn: "%ldap_base_dn%"
+        ldap_user: "%ldap_user%"
     
 #Assetic Configuration
 assetic:

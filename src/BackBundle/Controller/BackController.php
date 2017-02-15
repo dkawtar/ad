@@ -37,6 +37,8 @@ class BackController extends Controller
         
         $ad = $this->get("ldap_service");
         $users = $ad->getAllUser();
+        
+//        dump($users) or die;
         $usersLocked = $ad->getUserInfoComputer("locked");
         $usersDisabled = $ad->getUserInfoComputer("disabled");
         $neverExpires = $ad->getUserInfoComputer("expires");

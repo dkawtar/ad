@@ -147,9 +147,9 @@
                                                         {% for  group in tab %}
                                                             {% if group|length >1 %}
                                                                 {#{% if  keyUser != "count" or keyUser =="0" %}#}
-                                                                {% set titre =ad_active_directory.getData(group,"cn") %}
-                                                                {% set dn =ad_active_directory.getData(group,"distinguishedname") %}
-                                                                {% set dnGroup = dn |split(','~ad_tree) %}
+                                                                {% set titre =ldap_service.getData(group,"cn") %}
+                                                                {% set dn =ldap_service.getData(group,"distinguishedname") %}
+                                                                {% set dnGroup = dn |split(','~ldap_dn) %}
 
                                                                 <option value="{{ attribute(dnGroup,0) }}">{{ titre }}</option>
                                                             {% endif %}
@@ -304,7 +304,7 @@
                                         <button type="submit" class="btn green btn-block btn-add-user">Envoyer</button>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="{{ path('back_user_add') }}" class="btn default btn-block">Annuler</a>
+                                        <a href="{{ path('back_user_list') }}" class="btn default btn-block">Annuler</a>
                                     </div>
                                 </div>
                             </div>

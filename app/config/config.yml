@@ -44,6 +44,8 @@ twig:
         ldap_service: "@ldap_service"
         ldap_dn: "%ldap_base_dn%"
         ldap_user: "%ldap_user%"
+        recaptcha_key_secret: "%recaptcha_key_secret%"
+        recaptcha_key_site: "%recaptcha_key_site%"
     
 #Assetic Configuration
 assetic:

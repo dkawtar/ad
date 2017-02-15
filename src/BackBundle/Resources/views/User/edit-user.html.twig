@@ -190,12 +190,12 @@
                                                         {% for  group in tab %}
                                                             {% if group|length >1 %}
                                                                 {#{% if  keyUser != "count" or keyUser =="0" %}#}
-                                                                {% set titre =ad_active_directory.getData(group,"cn") %}
-                                                                {% set dn =ad_active_directory.getData(group,"distinguishedname") %}
-                                                                {% set dnGroup = dn |split(','~ad_tree) %}
+                                                                {% set titre =ldap_service.getData(group,"cn") %}
+                                                                {% set dn =ldap_service.getData(group,"distinguishedname") %}
+                                                                {% set dnGroup = dn |split(','~ldap_dn) %}
 
                                                                 <option value="{{ attribute(dnGroup,0) }}"
-                                                                        {% if ad_active_directory.checkMemberOfGroup(group,user.dn) %} selected="selected" {% endif %}>
+                                                                        {% if ldap_service.checkMemberOfGroup(group,user.dn) %} selected="selected" {% endif %}>
 
                                                                     {{ titre }}</option>
                                                             {% endif %}

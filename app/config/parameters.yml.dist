@@ -30,4 +30,6 @@ parameters:
     ldap_uid_key: userPrincipalName
     ldap_search_filter: '(userPrincipalName={username})'
     ldap_dn_string: 'CN={username},CN=Users,DC=42groupe,DC=cloud'
+    recaptcha_key_secret: ~
+    recaptcha_key_site: ~
 

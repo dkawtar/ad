@@ -28,12 +28,12 @@
                 {% if form is defined and user is defined %}
                     <div class="row">
                         <div class="col-lg-5 col-md-offset-1">
-                            <a href="{{ path('edit_password',{"person":ad_active_directory.base64Encode(user.login)}) }}"
+                            <a href="{{ path('edit_password',{"person":ldap_service.base64Encode(user.login)}) }}"
                                class="btn btn-sm btn-danger btn-block waves-effect waves-light deep-orange darken-2">
                                 <i class="material-icons left"></i>Modifier Mot de passe</a>
                         </div>
                         <div class="col-lg-5 ">
-                            <a href="{{ path('edit_info_user',{"person":ad_active_directory.base64Encode(user.login)}) }}"
+                            <a href="{{ path('edit_info_user',{"person":ldap_service.base64Encode(user.login)}) }}"
                                class="btn btn-sm btn-danger btn-block waves-effect waves-light deep-orange darken-2">
                                 <i class="material-icons left"></i>Modifier mes Infos</a>
                         </div>

@@ -20,9 +20,6 @@ class User extends BaseUser
 {
     const ROLE_USER = 'ROLE_USER';
     const ROLE_ADMIN = 'ROLE_ADMIN';
-    const FILTER = array("locked", "disabled",  "expires");
-    const OU = array("Saint-Mande", "Luxembourg", "Issy-Les-Moulineaux", "Maroc");
-    const SMTP = array('42consulting.fr', "42consulting.lu", "42mediatvcom.com", "42mediatvcom.fr", "42consulting.ma", "42consulting.nl");
     const ACCOUNTDISABLE = 2;
     const NORMAL_ACCOUNT = 512;
 
@@ -848,5 +845,23 @@ class User extends BaseUser
         $this->at = $at;
 
         return $this;
+    }
+
+    public static function Filter()
+    {
+        return array("locked", "disabled", "expires");
+
+    }
+
+    public static function OU()
+    {
+        return array("Saint-Mande", "Luxembourg", "Issy-Les-Moulineaux", "Maroc");
+
+    }
+
+    public static function SMTP()
+    {
+        return array('42consulting.fr', "42consulting.lu", "42mediatvcom.com", "42mediatvcom.fr", "42consulting.ma", "42consulting.nl");
+
     }
 }

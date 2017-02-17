@@ -20,6 +20,9 @@ class User extends BaseUser
 {
     const ROLE_USER = 'ROLE_USER';
     const ROLE_ADMIN = 'ROLE_ADMIN';
+    const FILTER = array("locked", "disabled",  "expires");
+    const OU = array("Saint-Mande", "Luxembourg", "Issy-Les-Moulineaux", "Maroc");
+    const SMTP = array('42consulting.fr', "42consulting.lu", "42mediatvcom.com", "42mediatvcom.fr", "42consulting.ma", "42consulting.nl");
     const ACCOUNTDISABLE = 2;
     const NORMAL_ACCOUNT = 512;
 
@@ -42,8 +45,8 @@ class User extends BaseUser
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
-    
-      /**
+
+    /**
      * @var string
      * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
@@ -59,7 +62,6 @@ class User extends BaseUser
 
     protected $logged;
 
-  
 
 //    /**
 //     * @var string
@@ -183,7 +185,7 @@ class User extends BaseUser
     public function init($data)
     {
         if (!empty($data)) {
-            
+
 //            dump($data);
             $this->setDn($this->getData($data, "distinguishedname"));
             $this->setUsername($this->getData($data, "samaccountname"));

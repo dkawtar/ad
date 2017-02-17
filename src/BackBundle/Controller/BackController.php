@@ -44,11 +44,15 @@ class BackController extends Controller
         $neverExpires = $ad->getUserInfoComputer("expires");
         $computers = $ad->getAllComputer();
 
-        $adGroups = $ad->getAllGroup();
+        $groups = $ad->getAllGroup();
+//        dump(
+//            $usersDisabled,
+//            $groups,$neverExpires,$usersLocked
+//        ) or die;
 
         return $this->render('BackBundle:Pages:index.html.twig', array(
             "users" => $users,
-            "groups" => $adGroups,
+            "groups" => $groups,
             "usersLocked" => $usersLocked,
             "usersDisabled" => $usersDisabled,
             "neverExpires" => $neverExpires,

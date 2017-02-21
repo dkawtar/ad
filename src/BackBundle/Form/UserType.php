@@ -139,6 +139,7 @@ class UserType extends AbstractType
                         "42Consulting Paris" => "Saint-Mandé",
                         "42Consulting Lux" => "Luxembourg",
                         "42MediaTelecom" => "Issy-Les-Moulineaux",
+                        "42Consulting Ma" => "Casablanca",
                     ),
                     'attr' => array(
                         'class' => 'form-control service',
@@ -181,7 +182,15 @@ class UserType extends AbstractType
                     ),
 
                 )
-            )->add('mobile', TextType::class, array(
+
+            )
+            ->add('Picture', 'file', array(
+                'label' => 'Photo',
+                'attr' => array(
+                    'accept' => 'image/png, image/jpeg, image/gif'
+                )
+            ))
+            ->add('mobile', TextType::class, array(
                     'label' => 'Mobile',
                     'required' => false,
                     'attr' => array(
@@ -191,6 +200,7 @@ class UserType extends AbstractType
                     ),
 
                 )
+
             );
     }
 

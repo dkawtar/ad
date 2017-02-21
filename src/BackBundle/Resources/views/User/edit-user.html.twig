@@ -8,9 +8,9 @@
       <link rel="stylesheet" href="{{ asset_url }}"/>
       {% endstylesheets %}
   {% endblock %}
-{% block title %}
-    Edit utilisateur - {{ parent() }}
-{% endblock %}
+{#{% block title %}#}
+    {#Edit utilisateur - {{ parent() }}#}
+{#{% endblock %}#}
 
 {% block header_breadcrumb %}
     <li>
@@ -42,12 +42,12 @@
                         <span class="caption-helper">...</span>
                     </div>
 
-                    <div class="tools">
-                        <a href="javascript:;" class="collapse" data-original-title="Réduire" title="Réduire"> </a>
-                        <a href="javascript:;" class="reload" data-original-title="Recharger" title="Recharger"> </a>
-                        <a href="" class="fullscreen" data-original-title="Plein écran" title="Plein écran"> </a>
-                        <a href="javascript:;" class="remove" data-original-title="Fermer" title="Fermer"> </a>
-                    </div>
+                    {#<div class="tools">#}
+                        {#<a href="javascript:;" class="collapse" data-original-title="Réduire" title="Réduire"> </a>#}
+                        {#<a href="javascript:;" class="reload" data-original-title="Recharger" title="Recharger"> </a>#}
+                        {#<a href="" class="fullscreen" data-original-title="Plein écran" title="Plein écran"> </a>#}
+                        {#<a href="javascript:;" class="remove" data-original-title="Fermer" title="Fermer"> </a>#}
+                    {#</div>#}
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -68,7 +68,7 @@
                                                 aria-hidden="true"></button>
 
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        L'utulisateur a été modifié.
+                                        L'utilisateur a été modifié.
                                     </div>
                                 {% else %}
                                     <div class="alert alert-warning" role="alert">
@@ -77,7 +77,7 @@
 
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                         <span class="sr-only">Error:</span>
-                                        Erreurr lors de la modification.
+                                        Erreur lors de la modification.
                                     </div>
                                 {% endif %}
                                 {% if error is defined and error %}
@@ -240,6 +240,31 @@
 
                                 <!-- END FORM-->
                             </div>
+                            {% if form.title is defined %}
+
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                        {{ form_label(form.title) }}
+                                        <div class="input-icon">
+                                            <i class="fa fa-graduation-cap"></i>
+                                            {{ form_widget(form.title) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if form.description is defined %}
+
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                        {{ form_label(form.description) }}
+
+                                        <div class="input-icon">
+                                            <i class="fa fa-list-alt"></i>
+                                            {{ form_widget(form.description) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                             <div class="col-sm-6">
                                 <div class="row">
                                     {% if form.address is defined %}
@@ -307,31 +332,6 @@
                                                 <div class="input-icon">
                                                     <i class="fa fa-mobile"></i>
                                                     {{ form_widget(form.mobile) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                    {% if form.title is defined %}
-
-                                        <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
-                                                {{ form_label(form.title) }}
-                                                <div class="input-icon">
-                                                    <i class="fa fa-graduation-cap"></i>
-                                                    {{ form_widget(form.title) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                    {% if form.description is defined %}
-
-                                        <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
-                                                {{ form_label(form.description) }}
-
-                                                <div class="input-icon">
-                                                    <i class="fa fa-list-alt"></i>
-                                                    {{ form_widget(form.description) }}
                                                 </div>
                                             </div>
                                         </div>

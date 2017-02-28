@@ -342,6 +342,24 @@
                 });
             });
         </script>
+        <script>
+            var $at = $('#form_at');
+            $at.change(function() {
+                var $form = $(this).closest('form');
+                var data = {};
+                data[$at.attr('name')] = $at.val();
+                $.ajax({
+                    url : $form.attr('action'),
+                    type: $form.attr('method'),
+                    data : data,
+                    success: function(html) {
+                        $('#form_service').replaceWith(
+                            $(html).find('#form_service')
+                        );
+                    }
+                });
+            });
+        </script>
     {% endblock %}
 
 

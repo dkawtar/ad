@@ -188,7 +188,6 @@ class User extends BaseUser
             $this->setDn($this->getData($data, "distinguishedname"));
             $this->setUsername($this->getData($data, "samaccountname"));
             $this->setLogin($this->getData($data, "samaccountname"));
-
             $this->setUsernameCanonical($this->getData($data, "samaccountname"));
             $this->setEmail($this->getData($data, "userprincipalname"));
             $this->setEmailCanonical($this->getData($data, "userprincipalname"));
@@ -224,9 +223,11 @@ class User extends BaseUser
 //            $this->setFirstName($this->getData($data, "displayname"));
             $this->setAddress($this->getData($data, "streetaddress"));
             $this->setCity($this->getData($data, "l"));
+            $this->setGroup($this->getData($data,""));
             $this->setPostalCode($this->getData($data, "postalcode"));
             $this->setCountry($this->getData($data, "c"));
             $this->setDescription($this->getData($data, "description"));
+
 
             $date = new \DateTime();
             $date->setTimestamp($this->getData($data, "lastlogontimestamp"));

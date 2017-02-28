@@ -107,6 +107,10 @@ fos_user:
     firewall_name: main                      
     user_class:    BackBundle\Entity\User
 
+    from_email:
+            address: you@example.com
+            sender_name: You
+
 #Extension Soft Doctrine    
 stof_doctrine_extensions:
     orm:
@@ -166,3 +170,26 @@ sensio_framework_extra:
 #            FOSUserBundle:
 #                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
 #                namespace_prefix: "FOS\\UserBundle"
+
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        # Some block with different templates
+        #acme.demo.block.demo:
+        #    templates:
+        #       - { name: 'Simple', template: 'AcmeDemoBundle:Block:demo_simple.html.twig' }
+        #       - { name: 'Big',    template: 'AcmeDemoBundle:Block:demo_big.html.twig' }

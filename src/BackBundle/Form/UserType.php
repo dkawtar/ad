@@ -1,7 +1,5 @@
 <?php
-
 namespace BackBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -10,8 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\FormEvent;
 class UserType extends AbstractType
 {
     /**
@@ -21,8 +20,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder
-            ->add('name', TextType::class, array(
+                $builder->add('name', TextType::class, array(
                     'label' => 'Nom',
                     'required' => true,
                     'attr' => array(
@@ -92,7 +90,6 @@ class UserType extends AbstractType
                         'placeholder' => 'Ingénieur, Développeur,...',
                         'autocomplete' => 'off'
                     ),
-
                 )
             )
             ->add('address', TextType::class, array(
@@ -122,7 +119,6 @@ class UserType extends AbstractType
                         'class' => 'form-control city',
                         'placeholder' => 'Paris',
                     ),
-
                 )
             )->add('country', TextType::class, array(
                     'label' => 'Pays',
@@ -131,31 +127,36 @@ class UserType extends AbstractType
                         'class' => 'form-control country',
                         'placeholder' => 'France',
                     ),
-
-                )
-            )->add('service', ChoiceType::class, array(
-                    'label' => 'Service',
-                    'choices' => array(
-                        "42Consulting Paris" => "Saint-Mandé",
-                        "42Consulting Lux" => "Luxembourg",
-                        "42MediaTelecom" => "Issy-Les-Moulineaux",
-                        "42Consulting Ma" => "Casablanca",
-                    ),
-                    'attr' => array(
-                        'class' => 'form-control service',
-                        'placeholder' => 'service',
-                    ),
-
                 )
             )->add('group', HiddenType::class, array(
                     'label' => '',
                     'attr' => array(
                         'class' => 'select-groups',
                         'autocomplete' => 'off'
-
                     ),
                 )
             )
+            ->add('phone', TextType::class, array(
+                    'label' => 'Fix',
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'form-control phone',
+                        'placeholder' => '0105020304',
+                        'autocomplete' => 'off'
+                    ),
+                )
+            )->add('mobile', TextType::class, array(
+                    'label' => 'Mobile',
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'form-control mobile',
+                        'placeholder' => '0601020304',
+                        'autocomplete' => 'off'
+                    ),
+                )
+            );
+
+        $builder
             ->add('at', ChoiceType::class, array(
                     'label' => ' ',
                     'choices' => array(
@@ -169,41 +170,44 @@ class UserType extends AbstractType
                         'class' => 'form-control',
                         'placeholder' => 'service',
                     ),
-
                 )
-            )
-            ->add('phone', TextType::class, array(
-                    'label' => 'Fix',
-                    'required' => false,
-                    'attr' => array(
-                        'class' => 'form-control phone',
-                        'placeholder' => '0105020304',
-                        'autocomplete' => 'off'
-                    ),
-
-                )
-
-            )
-            ->add('Picture', 'file', array(
-                'label' => 'Photo',
-                'attr' => array(
-                    'accept' => 'image/png, image/jpeg, image/gif'
-                )
-            ))
-            ->add('mobile', TextType::class, array(
-                    'label' => 'Mobile',
-                    'required' => false,
-                    'attr' => array(
-                        'class' => 'form-control mobile',
-                        'placeholder' => '0601020304',
-                        'autocomplete' => 'off'
-                    ),
-
-                )
-
             );
-    }
 
+        $formModifier = function (FormInterface $form, At $at = null) {
+            $services = null === $at ? array() : $at->getService();
+            $form->add('service', ChoiceType::class, array(
+                    'label' => 'Service',
+                    'choices' => array(
+                        "42Consulting Paris" => "Saint-Mandé",
+                        "42Consulting Lux" => "Luxembourg",
+                        "42MediaTelecom" => "Issy-Les-Moulineaux",
+                        "42 Consulting Maroc" =>"Casablanca"
+                    ),
+                    'attr' => array(
+                        'class' => 'form-control service',
+                        'placeholder' => 'service',
+                    ),
+                )
+            );
+        };
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                $data = $event->getData();
+
+                $formModifier($event->getForm(), $data->getAt());
+            }
+        );
+
+        $builder->get('at')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                $at = $event->getForm()->getData();
+                $formModifier($event->getForm()->getParent(), $at);
+            }
+        );
+
+    }
     /**
      * @param OptionsResolver $resolver
      */

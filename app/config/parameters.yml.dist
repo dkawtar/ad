@@ -25,7 +25,7 @@ parameters:
     
     ldap_user: 'compte@user.com'
     ldap_pass: root
-    ldap_base_dn: 'DC=42group,DC=cloud'
+    ldap_base_dn: 'DC=42groupe,DC=cloud'
     ldap_search_dn: 'CN=username,CN=Users,DC=42groupe,DC=cloud'
     ldap_uid_key: userPrincipalName
     ldap_search_filter: '(userPrincipalName={username})'

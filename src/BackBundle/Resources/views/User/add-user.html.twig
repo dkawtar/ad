@@ -56,10 +56,25 @@
                                 <span class="message-error"></span>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#infosPrincipales" role="tab" data-toggle="tab"> Informations principales</a>
+                                </li>
+                                <li>
+                                    <a href="#description"role="tab" data-toggle="tab"> Description</a>
+                                </li>
+                                <li>
+                                    <a href="#exchange"role="tab" data-toggle="tab"> Exchange</a>
+                                </li>
+                                <li>
+                                    <a href="#groupes"role="tab" data-toggle="tab"> Groupes</a>
+                                </li>
+                            </ul></div>
                         {% if form is defined %}
                             {{ form_start(form, { 'method': 'POST','attr': { 'role':'form'} }) }}
-
-                            <div class="col-sm-6">
+                        <div class="tab-content">
+                            <div id="infosPrincipales" class="col-sm-6 tab-pane active " role="tabpanel">
                                 <div class="row">
                                     {% if form.name is defined %}
                                         <div class="col-sm-6">
@@ -103,16 +118,6 @@
                                         </div>
                                     {% endif %}
 
-                                    {% if form.at is defined %}
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                {#<div class="input-icon">#}
-                                                    {#<i class="fa fa-at"></i>#}
-                                                    {{ form_widget(form.at) }}
-                                                {#</div>#}
-                                            </div>
-                                        </div>
-                                    {% endif %}
 
                                     {#{% if form.login is defined %}#}
                                     {#<div class="col-sm-12">#}
@@ -193,8 +198,8 @@
                                 </div>
 
                                 <!-- END FORM-->
-                            </div>
-                            <div class="col-sm-6">
+                           </div>
+                                <div role="tabpanel" class="col-sm-6 tab-pane" id="description">
                                 <div class="row">
                                     {% if form.title is defined %}
 
@@ -293,11 +298,36 @@
                                             </div>
                                         </div>
                                     {% endif %}
+                                    {% if form.picture is defined %}
+                                        <div class="col-sm-6">
+                                            <div class="form-group has-feedback">
+                                                {{ form_label(form.picture) }}
+                                                <div class="input-icon">
+                                                    <i class="fa fa-user"></i>
+                                                    {{ form_widget(form.picture) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
 
                                 </div>
                                 <!-- END FORM-->
                             </div>
+                                    <div role="tabpanel" class="col-sm-6 tab-pane" id="exchange">
+                                        <div class="row">
+                                            {% if form.at is defined %}
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <i class="fa fa-at"></i>
+                                                            {{ form_widget(form.at) }}
+                                                            {#{<select id="form_at" style="display: none"/>}#}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-md-3 col-offset-sm-3">
@@ -318,6 +348,7 @@
             </div>
         </div>
     </div>
+                </div>
 
 
 {% endblock %}

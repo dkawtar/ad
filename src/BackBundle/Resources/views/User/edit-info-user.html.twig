@@ -103,6 +103,17 @@
                                 </div>
 
                             {% endif %}
+                            {% if form.picture is defined %}
+                                <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                        {{ form_label(form.picture) }}
+                                        <div class="input-icon">
+                                            <i class="fa fa-user"></i>
+                                            {{ form_widget(form.picture) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
 
                         </div>
                         <div class="col-sm-7 col-md-offset-2" style="margin-top: 12px; margin-bottom: 12px;">

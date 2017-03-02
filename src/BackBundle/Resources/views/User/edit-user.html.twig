@@ -176,7 +176,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 {{ form_label(form.service) }}
-                                                {{ form_widget(form.service, {'attr': {'class': 'bs-select form-control service'}}) }}
+                                                {{ form_widget(form.service, {'attr': {'class': 'bs-select form-control service'}},{ 'id': 'form_at' }) }}
                                                 {#{<select id="form_service" style="display: none"/>}#}
                                             </div>
                                         </div>
@@ -367,7 +367,7 @@
                                     <div class="form-group">
                                         <div class="input-icon">
                                             <i class="fa fa-at"></i>
-                                            {{ form_widget(form.at) }}
+                                            {{ form_widget(form.at,{ 'id': 'form_at' }) }}
                                             {#{<select id="form_at" style="display: none"/>}#}
                                         </div>
                                     </div>

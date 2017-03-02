@@ -77,7 +77,7 @@
 
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                         <span class="sr-only">Error:</span>
-                                        Erreurr lors de la modification.
+                                        Erreur lors de la modification.
                                     </div>
                                 {% endif %}
                                 {% if error is defined and error %}
@@ -90,12 +90,23 @@
                                 {% endif %}
                             {% endif %}
                         </div>
-                        {% if form is defined and user.dn is not null %}
+                        <div class="col-sm-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#infosPrincipales" role="tab" data-toggle="tab"> Informations principales</a>
+                                </li>
+                                <li>
+                                    <a href="#description"role="tab" data-toggle="tab"> Description</a>
+                                </li>
+                                <li>
+                                    <a href="#exchange"role="tab" data-toggle="tab"> Exchange</a>
+                                </li></ul></div>
+                                {% if form is defined and user.dn is not null %}
                             {#{{ dump(adUser) }}#}
                             {{ form_start(form, { 'method': 'POST','attr': { 'role':'form'} }) }}
-
-                            <div class="col-sm-6">
-                                <div class="row">
+                        <div class="tab-content">
+                            <div id="infosPrincipales" class="col-sm-6 tab-pane active " role="tabpanel">
+                                <div  class="row">
                                     {% if form.name is defined %}
                                         <div class="col-sm-6">
                                             <div class="form-group has-feedback" id="field-name">
@@ -146,16 +157,7 @@
                                                                             </div>
                                                                         {% endif %}#}
 
-                                    {% if form.at is defined %}
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <div class="input-icon">
-                                                    <i class="fa fa-at"></i>
-                                                    {{ form_widget(form.at) }} {<select id="form_at" style="display: none"/>}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endif %}
+
 
                                     {#{% if form.login is defined %}#}
                                     {#<div class="col-sm-12">#}
@@ -174,7 +176,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 {{ form_label(form.service) }}
-                                                {{ form_widget(form.service, {'attr': {'class': 'bs-select form-control service'}}) }} {<select id="form_service" style="display: none"/>}
+                                                {{ form_widget(form.service, {'attr': {'class': 'bs-select form-control service'}}) }}
+                                                {#{<select id="form_service" style="display: none"/>}#}
                                             </div>
                                         </div>
                                     {% endif %}
@@ -236,11 +239,14 @@
                                             </div>
                                         </div>
                                     {% endif %}
+
+
                                 </div>
+
 
                                 <!-- END FORM-->
                             </div>
-                                <div class="col-sm-6">
+                                <div role="tabpanel" class="col-sm-6 tab-pane" id="description">
                                     <div class="row">
                                         {% if form.title is defined %}
 
@@ -340,13 +346,36 @@
                                             </div>
                                         </div>
                                     {% endif %}
-
+                                    {% if form.picture is defined %}
+                                        <div class="col-sm-6">
+                                            <div class="form-group has-feedback">
+                                                {{ form_label(form.picture) }}
+                                                <div class="input-icon">
+                                                    <i class="fa fa-user"></i>
+                                                    {{ form_widget(form.picture) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
 
                                 </div>
+                            <div role="tabpanel" class="col-sm-6 tab-pane" id="exchange">
+                                <div class="row">
+                            {% if form.at is defined %}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-icon">
+                                            <i class="fa fa-at"></i>
+                                            {{ form_widget(form.at) }}
+                                            {#{<select id="form_at" style="display: none"/>}#}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
 
                                 <!-- END FORM-->
-                            </div>
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-md-3 col-offset-sm-3">
@@ -422,5 +451,21 @@
                 });
             });
         </script>
+        {#<script type="text/javascript">#}
+            {#$(function()#}
+            {#{#}
+                {#var divs = $(".formulaire-multiple"), speed = 400;#}
+{#//                divs.not("#infosPrincipales").hide();#}
+
+                {#$(".more").click(function()#}
+                {#{#}
+                    {#var idToShow = $(this).attr("href");#}
+                    {#divs.filter(":visible").hide();#}
+                    {#$(idToShow).show();#}
+
+                    {#return false;#}
+                {#});#}
+            {#});#}
+        {#</script>#}
 
     {% endblock %}

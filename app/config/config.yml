@@ -182,6 +182,12 @@ sonata_block:
 
         sonata.block.service.text:
         sonata.block.service.rss:
+vich_uploader:
+    db_driver: orm
+    mappings:
+        image:
+            uri_prefix:         /ad/web/img/logo
+            upload_destination: %kernel.root_dir%/../web/img/logo
 
         # Some specific block from the SonataMediaBundle
         #sonata.media.block.media:

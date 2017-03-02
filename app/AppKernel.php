@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
+            new \Vich\UploaderBundle\VichUploaderBundle()
 //            new FOS\RestBundle\FOSRestBundle(),
 //            new JMS\SerializerBundle\JMSSerializerBundle(),
 //            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),

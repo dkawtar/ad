@@ -1,5 +1,6 @@
 <?php
 namespace BackBundle\Form;
+use BackBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -11,6 +12,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\Test\FormInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 class UserType extends AbstractType
 {
     /**
@@ -154,9 +157,9 @@ class UserType extends AbstractType
                         'autocomplete' => 'off'
                     ),
                 )
-            );
+            )
 
-        $builder
+//        $builder
             ->add('at', ChoiceType::class, array(
                     'label' => ' ',
                     'choices' => array(
@@ -171,17 +174,24 @@ class UserType extends AbstractType
                         'placeholder' => 'service',
                     ),
                 )
-            );
+            )
+                    ->add('picture', 'file', array(
+                        'label' => 'Photo de Profil',
+                        'attr' => array(
+                            'accept' => 'image/png, image/jpeg, image/gif'
+                        )
+                    ))
 
-        $formModifier = function (FormInterface $form, At $at = null) {
-            $services = null === $at ? array() : $at->getService();
-            $form->add('service', ChoiceType::class, array(
+//        $formModifier = function (FormInterface $form, User $at = null) {
+//            $services = null === $at ? array() : $at->getService();
+//            $form
+                 ->add('service', ChoiceType::class, array(
                     'label' => 'Service',
                     'choices' => array(
-                        "42Consulting Paris" => "Saint-Mandé",
-                        "42Consulting Lux" => "Luxembourg",
-                        "42MediaTelecom" => "Issy-Les-Moulineaux",
-                        "42 Consulting Maroc" =>"Casablanca"
+                        "Saint-Mandé" => "Saint-Mandé",
+                        "Luxembourg" => "Luxembourg",
+                        "Issy-Les-Moulineaux" => "Issy-Les-Moulineaux",
+                        "Maroc" =>"Maroc"
                     ),
                     'attr' => array(
                         'class' => 'form-control service',
@@ -189,23 +199,25 @@ class UserType extends AbstractType
                     ),
                 )
             );
-        };
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
-                $data = $event->getData();
 
-                $formModifier($event->getForm(), $data->getAt());
-            }
-        );
 
-        $builder->get('at')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier) {
-                $at = $event->getForm()->getData();
-                $formModifier($event->getForm()->getParent(), $at);
-            }
-        );
+//        };
+//        $builder->addEventListener(
+//            FormEvents::PRE_SET_DATA,
+//            function (FormEvent $event) use ($formModifier) {
+//                $data = $event->getData();
+//
+//                $formModifier($event->getForm(), $data->getAt());
+//            }
+//        );
+//
+//        $builder->get('at')->addEventListener(
+//            FormEvents::POST_SUBMIT,
+//            function (FormEvent $event) use ($formModifier) {
+//                $at = $event->getForm()->getData();
+//                $formModifier($event->getForm()->getParent(), $at);
+//            }
+//        );
 
     }
     /**
